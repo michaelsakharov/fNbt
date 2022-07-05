@@ -262,6 +262,33 @@ namespace fNbt {
         }
 
 
+        /// <summary> Returns the value of this tag, cast as a decimal (128-bit floating point number).
+        /// Only supported by NbtFloat, NbtDouble, and, with loss of precision, by NbtByte, NbtShort, NbtInt, and NbtLong. </summary>
+        /// <exception cref="InvalidCastException"> When used on an unsupported tag. </exception>
+        public decimal DecimalValue {
+            get {
+                switch( TagType ) {
+                case NbtTagType.Byte:
+                    return ( (NbtByte)this ).Value;
+                case NbtTagType.Short:
+                    return ( (NbtShort)this ).Value;
+                case NbtTagType.Int:
+                    return ( (NbtInt)this ).Value;
+                case NbtTagType.Long:
+                    return ( (NbtLong)this ).Value;
+                case NbtTagType.Float:
+                    return (decimal)( (NbtFloat)this ).Value;
+                case NbtTagType.Double:
+                    return (decimal)( (NbtDouble)this ).Value;
+                case NbtTagType.Decimal:
+                    return ( (NbtDecimal)this ).Value;
+                default:
+                    throw new InvalidCastException("Cannot get DecimalValue from " + GetCanonicalTagName( TagType ) );
+                }
+            }
+        }
+
+
         /// <summary> Returns the value of this tag, cast as a byte array.
         /// Only supported by NbtByteArray tags. </summary>
         /// <exception cref="InvalidCastException"> When used on a tag other than NbtByteArray. </exception>

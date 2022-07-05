@@ -157,6 +157,8 @@ namespace fNbt.Serialization
                 return ((NbtByteArray)value).Value;
             else if (value is NbtDouble)
                 return ((NbtDouble)value).Value;
+            else if (value is NbtDecimal)
+                return ((NbtDecimal)value).Value;
             else if (value is NbtFloat)
                 return ((NbtFloat)value).Value;
             else if (value is NbtInt)

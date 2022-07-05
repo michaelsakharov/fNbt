@@ -8,7 +8,8 @@ namespace fNbt {
     /// while taking care of endianness, string encoding, and skipping. </summary>
     sealed class NbtBinaryReader : BinaryReader {
         readonly byte[] floatBuffer = new byte[sizeof( float )],
-                        doubleBuffer = new byte[sizeof( double )];
+                        doubleBuffer = new byte[sizeof( double )],
+                        decimalBuffer = new byte[sizeof( decimal )];
 
         byte[] seekBuffer;
         const int SeekBufferSize = 64 * 1024;
@@ -74,6 +75,16 @@ namespace fNbt {
                 return BitConverter.ToDouble( doubleBuffer, 0 );
             }
             return base.ReadDouble();
+        }
+
+
+        public override decimal ReadDecimal() {
+            if( BitConverter.IsLittleEndian == bigEndian ) {
+                BaseStream.Read(decimalBuffer, 0, sizeof( decimal ) );
+                Array.Reverse(decimalBuffer);
+                return BitConverterExt.ToDecimal(decimalBuffer);
+            }
+            return base.ReadDecimal();
         }
 
 

@@ -70,6 +70,17 @@ namespace fNbt {
         }
 
 
+        public override void Write( decimal value ) {
+            if( BitConverter.IsLittleEndian == bigEndian ) {
+                byte[] decimalBytes = BitConverterExt.GetBytes(value);
+                Array.Reverse(decimalBytes);
+                Write(decimalBytes);
+            } else {
+                base.Write( value );
+            }
+        }
+
+
         public override void Write( string value ) {
             if( value == null )
                 throw new ArgumentNullException( "value" );

@@ -49,6 +49,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="BitConverterExt.cs" />
     <Compile Include="InvalidReaderStateException.cs" />
     <Compile Include="JetBrains.Annotations.cs" />
     <Compile Include="NbtCompression.cs" />
