@@ -226,6 +226,8 @@ namespace fNbt {
                     return ( (NbtFloat)this ).Value;
                 case NbtTagType.Double:
                     return (float)( (NbtDouble)this ).Value;
+                case NbtTagType.Decimal:
+                    return (float)( (NbtDecimal)this ).Value;
                 default:
                     throw new InvalidCastException( "Cannot get FloatValue from " + GetCanonicalTagName( TagType ) );
                 }
@@ -251,6 +253,8 @@ namespace fNbt {
                     return ( (NbtFloat)this ).Value;
                 case NbtTagType.Double:
                     return ( (NbtDouble)this ).Value;
+                case NbtTagType.Decimal:
+                    return (double)( (NbtDecimal)this ).Value;
                 default:
                     throw new InvalidCastException( "Cannot get DoubleValue from " + GetCanonicalTagName( TagType ) );
                 }
@@ -299,6 +303,8 @@ namespace fNbt {
                     return ( (NbtByte)this ).Value.ToString( CultureInfo.InvariantCulture );
                 case NbtTagType.Double:
                     return ( (NbtDouble)this ).Value.ToString( CultureInfo.InvariantCulture );
+                case NbtTagType.Decimal:
+                    return ( (NbtDecimal)this ).Value.ToString( CultureInfo.InvariantCulture );
                 case NbtTagType.Float:
                     return ( (NbtFloat)this ).Value.ToString( CultureInfo.InvariantCulture );
                 case NbtTagType.Int:
@@ -332,6 +338,8 @@ namespace fNbt {
                 return "TAG_Compound";
             case NbtTagType.Double:
                 return "TAG_Double";
+            case NbtTagType.Decimal:
+                return "TAG_Decimal";
             case NbtTagType.End:
                 return "TAG_End";
             case NbtTagType.Float:

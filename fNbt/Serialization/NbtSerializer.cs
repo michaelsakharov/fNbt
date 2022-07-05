@@ -40,6 +40,8 @@ namespace fNbt.Serialization
                 return new NbtByteArray(tagName, (byte[])value);
             else if (value is double)
                 return new NbtDouble(tagName, (double)value);
+            else if (value is decimal)
+                return new NbtDecimal(tagName, (decimal)value);
             else if (value is float)
                 return new NbtFloat(tagName, (float)value);
             else if (value is int)
@@ -71,6 +73,8 @@ namespace fNbt.Serialization
                     listType = NbtTagType.ByteArray;
                 else if (elementType == typeof (double))
                     listType = NbtTagType.Double;
+                else if (elementType == typeof (decimal))
+                    listType = NbtTagType.Decimal;
                 else if (elementType == typeof (float))
                     listType = NbtTagType.Float;
                 else if (elementType == typeof (int) || elementType == typeof (uint))
@@ -182,6 +186,8 @@ namespace fNbt.Serialization
                 }
                 else if (list.ListType == NbtTagType.Double)
                     type = typeof(double);
+                else if (list.ListType == NbtTagType.Decimal)
+                    type = typeof(decimal);
                 else if (list.ListType == NbtTagType.Float)
                     type = typeof(float);
                 else if (list.ListType == NbtTagType.Int)

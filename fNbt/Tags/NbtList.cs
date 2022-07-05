@@ -249,6 +249,9 @@ namespace fNbt {
                 case NbtTagType.Double:
                     newTag = new NbtDouble();
                     break;
+                case NbtTagType.Decimal:
+                    newTag = new NbtDecimal();
+                    break;
                 case NbtTagType.ByteArray:
                     newTag = new NbtByteArray();
                     break;
@@ -304,6 +307,9 @@ namespace fNbt {
                 break;
             case NbtTagType.Double:
                 readStream.Skip( length * sizeof( double ) );
+                break;
+            case NbtTagType.Decimal:
+                readStream.Skip( length * sizeof( decimal ) );
                 break;
             default:
                 for( int i = 0; i < length; i++ ) {

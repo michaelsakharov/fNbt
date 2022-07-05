@@ -233,6 +233,7 @@ namespace fNbt.Test {
                 new NbtLong( "long", 4 ),
                 new NbtFloat( "float", 5 ),
                 new NbtDouble( "double", 6 ),
+                new NbtDecimal( "decimal", 7 ),
                 new NbtByteArray( "byteArray", new byte[] { 10, 11, 12 } ),
                 new NbtIntArray( "intArray", new[] { 20, 21, 22 } ),
                 new NbtString( "string", "23" )
@@ -254,6 +255,8 @@ namespace fNbt.Test {
             Assert.AreEqual( reader.ReadValue(), 5f );
             Assert.IsTrue( reader.ReadToFollowing() ); // double
             Assert.AreEqual( reader.ReadValue(), 6d );
+            Assert.IsTrue( reader.ReadToFollowing() ); // decimal
+            Assert.AreEqual( reader.ReadValue(), 7m );
             Assert.IsTrue( reader.ReadToFollowing() ); // byteArray
             CollectionAssert.AreEqual( (byte[])reader.ReadValue(), new byte[] { 10, 11, 12 } );
             Assert.IsTrue( reader.ReadToFollowing() ); // intArray

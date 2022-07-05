@@ -284,6 +284,7 @@ namespace fNbt {
                 case NbtTagType.Long:
                 case NbtTagType.Float:
                 case NbtTagType.Double:
+                case NbtTagType.Decimal:
                 case NbtTagType.String:
                     atValue = true;
                     break;
@@ -367,6 +368,10 @@ namespace fNbt {
                 case NbtTagType.Double:
                 case NbtTagType.Long:
                     reader.ReadInt64();
+                    break;
+
+                case NbtTagType.Decimal:
+                    reader.ReadDecimal();
                     break;
 
                 case NbtTagType.ByteArray:
@@ -598,6 +603,9 @@ namespace fNbt {
                 case NbtTagType.Double:
                     return new NbtDouble( TagName, reader.ReadDouble() );
 
+                case NbtTagType.Decimal:
+                    return new NbtDecimal( TagName, reader.ReadDecimal() );
+
                 case NbtTagType.String:
                     return new NbtString( TagName, reader.ReadString() );
 
@@ -675,6 +683,10 @@ namespace fNbt {
 
                 case NbtTagType.Double:
                     value = reader.ReadDouble();
+                    break;
+
+                case NbtTagType.Decimal:
+                    value = reader.ReadDecimal();
                     break;
 
                 case NbtTagType.Long:
@@ -773,6 +785,12 @@ namespace fNbt {
                 case NbtTagType.Double:
                     for( int i = 0; i < elementsToRead; i++ ) {
                         result[i] = (T)Convert.ChangeType( reader.ReadDouble(), typeof( T ) );
+                    }
+                    break;
+
+                case NbtTagType.Decimal:
+                    for( int i = 0; i < elementsToRead; i++ ) {
+                        result[i] = (T)Convert.ChangeType( reader.ReadDecimal(), typeof( T ) );
                     }
                     break;
 

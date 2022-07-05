@@ -302,6 +302,10 @@ namespace fNbt {
                         newTag = new NbtDouble();
                         break;
 
+                    case NbtTagType.Decimal:
+                        newTag = new NbtDecimal();
+                        break;
+
                     case NbtTagType.ByteArray:
                         newTag = new NbtByteArray();
                         break;
@@ -367,6 +371,10 @@ namespace fNbt {
 
                     case NbtTagType.Double:
                         newTag = new NbtDouble();
+                        break;
+
+                    case NbtTagType.Decimal:
+                        newTag = new NbtDecimal();
                         break;
 
                     case NbtTagType.ByteArray:
