@@ -24,7 +24,7 @@ namespace fNbt {
 
         public NbtTagType ReadTagType() {
             NbtTagType type = (NbtTagType)ReadByte();
-            if( type < NbtTagType.End || type > NbtTagType.IntArray ) {
+            if( type < NbtTagType.End || type > NbtTagType.Decimal) {
                 throw new NbtFormatException( "NBT tag type out of range: " + (int)type );
             }
             return type;
